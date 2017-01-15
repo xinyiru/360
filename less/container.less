@@ -1,0 +1,30 @@
+@cols:12;
+.container{
+  &{
+    display: block;
+    height:auto;
+  }
+  & .row{
+    display: block;
+    height:auto;
+  }
+  & .row:before,& .row:after{
+    content: '';
+    display: block;
+    clear: both;
+    font-size: 0;
+    height:0;
+    line-height:0;
+  }
+}
+[class*=col-]{
+  float: left;
+}
+.grid(@type,@i:1) when (@i<=@cols){
+  .col-@{type}-@{i}{
+    display: block;
+    width:100 / @cols * @i * 1%;
+  }
+  .grid(@type,@i+1);
+}
+.grid(xs);
